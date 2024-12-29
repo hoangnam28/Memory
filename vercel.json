@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "framework": "node",
   "builds": [
     {
       "src": "server/app.js",
@@ -14,11 +13,21 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/app.js"
+      "dest": "/server/app.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/public/uploads/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "public/$1"
+      "dest": "/public/$1"
     }
-  ]
-} 
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

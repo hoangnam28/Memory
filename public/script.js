@@ -1,3 +1,7 @@
+const API_URL = process.env.NODE_ENV === 'production' 
+    ? 'https://your-vercel-domain.vercel.app'
+    : 'http://localhost:3000';
+
 document.addEventListener('DOMContentLoaded', () => {
     const albumSection = document.getElementById('albumSection');
     const photoSection = document.getElementById('photoSection');
@@ -14,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load albums
     function loadAlbums() {
-        fetch('/api/albums')
+        fetch(`${API_URL}/api/albums`)
             .then(res => res.json())
             .then(albums => {
                 albumList.innerHTML = '';
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadPhotos(albumId) {
         const gallery = document.getElementById('gallery');
         gallery.innerHTML = '';
-        fetch(`/api/photos/album/${albumId}`)
+        fetch(`${API_URL}/api/photos/album/${albumId}`)
             .then(res => res.json())
             .then(photos => {
                 if (photos.length === 0) {
@@ -109,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(albumForm);
         const albumData = Object.fromEntries(formData);
 
-        fetch('/api/albums', {
+        fetch(`${API_URL}/api/albums`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
