@@ -1,5 +1,5 @@
 const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://your-vercel-domain.vercel.app'
+    ? 'https://memory-2a4mnua72-hoangnam28s-projects.vercel.app'
     : 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', () => {
